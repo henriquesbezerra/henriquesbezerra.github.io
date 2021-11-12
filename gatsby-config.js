@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/",
   siteMetadata: {
     siteUrl: "https://henriquesbezerra.github.io/",
     title: "My Gatsby Site",
