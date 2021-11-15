@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: "/",
   siteMetadata: {
     siteUrl: "https://henriquesbezerra.github.io/",
-    title: "My Gatsby Site",
+    title: "Simple Gatsby Blog",
   },
   plugins: [
     "gatsby-plugin-styled-components",
@@ -40,5 +40,12 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "blog",
+        path: `${__dirname}/blog`,
+      }
+    }
   ],
 };
