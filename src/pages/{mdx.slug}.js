@@ -9,7 +9,7 @@ const BlogPost = ({data}) => {
   const image = getImage(data.mdx.frontmatter.hero_image)
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
-      <Link to="/" >Voltar </Link>
+      <a href="/" >Voltar </a>
       <p>{data.mdx.frontmatter.date}</p>
       <GatsbyImage
         image={image}
