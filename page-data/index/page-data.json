@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-index-js",
     "path": "/",
-    "result": {"pageContext":{}},
-    "staticQueryHashes": []}
+    "result": {"data":{"allMdx":{"nodes":[{"id":"c36e0670-4e43-5672-86c0-69e0cef9dabb","slug":"site-in-construction/","frontmatter":{"date":"11 15, 2021","title":"Site em construção"}}]}},"pageContext":{}},
+    "staticQueryHashes": ["944795369"]}
