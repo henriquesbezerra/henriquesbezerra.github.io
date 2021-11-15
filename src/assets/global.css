@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+/* 
+  RESET & DEFAULTS
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+  background: #f3f3f3;
+}
+
+
+.container{
+  margin: auto;
+  max-width: 500px;
+  font-family: sans-serif;
+}
+
+
+/* 
+  HEADER STYLES
+*/
+
+.site-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #ededed;
+  padding: 1rem 0;
+  margin: 2rem 0rem 4rem;
+}
+
+.site-title{
+  font-size: 2.5rem;
+  color: gray;
+  font-weight: 700;
+}
+
+.site-icon-links{
+  font-size: 1rem;
+  color: gray;
+}
+
+.site-icon-links a{
+  text-decoration: none;
+  color: gray;
+}
+
+.site-icon-links a + a{
+  margin-left: 10px;
+}
+
+
+/*
+  HOME 
+*/
+
+.card-post{
+  margin-bottom: 30px;
+}

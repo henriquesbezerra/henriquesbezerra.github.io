@@ -1,13 +1,10 @@
 import * as React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
-import {
-  container,
-  heading,
-  navLinks,
-  navLinkItem,
-  navLinkText,
-  siteTitle
-} from './layout.module.css'
+import { FaGithubAlt } from 'react-icons/fa'
+import { AiFillLinkedin } from 'react-icons/ai'
+
+import { useStaticQuery, graphql } from 'gatsby'
+
+import '../assets/global.css';
 
 const Layout = ({ pageTitle, children }) => {
 
@@ -16,36 +13,32 @@ const Layout = ({ pageTitle, children }) => {
       site{
         siteMetadata{
           title
+          github
+          linkedin
         }
       }
     }
   `);
 
   return (
-    <div className={container}>
+    <div className="container">
       <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-      <header className={siteTitle} >{data.site.siteMetadata.title}</header>
-      <nav>
-        <ul className={navLinks}>
-          <li className={navLinkItem}>
-            <Link to="/" className={navLinkText}>
-              Home
-            </Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/about" className={navLinkText}>
-              About
-            </Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/blog" className={navLinkText}>
-              Blog
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      
+      <header className="site-header">
+        <div className="site-title">
+          {data.site.siteMetadata.title}
+        </div>
+        <div className="site-icon-links">
+          <a href={data.site.siteMetadata.github} target="_blank" rel="noreferrer">
+            <FaGithubAlt size={24}/>
+          </a>
+          <a href={data.site.siteMetadata.linkedin} target="_blank" rel="noreferrer">
+            <AiFillLinkedin size={24}/>
+          </a>
+        </div>
+      </header>
+     
       <main>
-        <h1 className={heading}>{pageTitle}</h1>
         {children}
       </main>
     </div>

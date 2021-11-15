@@ -2,7 +2,10 @@ module.exports = {
   pathPrefix: "/",
   siteMetadata: {
     siteUrl: "https://henriquesbezerra.github.io/",
-    title: "Simple Gatsby Blog",
+    title: "Henrique Silva",
+    description: "Teste teste",
+    github: "https://github.com/henriquesbezerra",
+    linkedin: "https://www.linkedin.com/in/henriquesbezerra/",
   },
   plugins: [
     "gatsby-plugin-styled-components",
@@ -43,8 +46,8 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "blog",
-        path: `${__dirname}/blog`,
+        name: "content",
+        path: `./src/content`,
       }
     }
   ],
