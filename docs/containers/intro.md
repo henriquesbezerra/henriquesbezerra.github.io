@@ -4,59 +4,131 @@ sidebar_position: 1
 
 # Introdução a Containers
 
-Nesta introdução, buscaremos compreender as bases sobre containers, olhando resumidamente
-para o contexto histório de surgimento dessa tecnologia e como ela evolui ao longo do tempo até chegar aos poderosos containers runtimers que temos nos dias de hoje, como Docker e Podman.
+Nesta introdução, busco compreender as bases sobre containers, 
+olhando resumidamente para a história por trás de seu surgimento e como ela evoluiu até chegar aos poderosos containers runtimers que temos nos dias de hoje, como Docker e Podman.
 
-Durante a década de 1960, surgi um proeminente modelo de computação — o **compartilhamento de tempo** — que, na década de 1970, representou uma grande mudança tecnologica na história da computação.
+Na década de 1960, surge o modelo computacional de **compartilhamento de tempo** (Time-Sharing), que possibilitou o compartilhamento simultâneo de um recurso de computação (CPU, Memória, Armazenamento, Rede, ...) entre múltiplas tarefas e usuários, dando a cada um, uma pequena fatia do tempo de processamento. 
 
-O compartilhamento de tempo é o compartilhamento simultâneo de um recurso de computação entre muitas
-tarefas ou usuários, dando a cada tarefa ou usuário uma pequena fatia do tempo de processamento. Essa
-troca rápida entre tarefas ou usuários dá a ilusão de execução simultânea. Esse modelo possibilita multitarefas
-por um único usuário ou permite sessões de vários usuários.
+Isso foi um avanço em relação ao processamento em lote (batch processing), pois permitia que os usuários interagissem com o sistem em tempo real. Cada usuário tinha a ilusão de estar utilizando a máquina sozinho, pois o sistema operacional alternava rapidamente entre os 
+processos.
 
-Ao permitir que muitos usuários interagissem simultaneamente com um único computador, o compartilhamento de tempo reduziu drasticamente o custo de fornecer capacidade de computação e tornou possível que indivíduos e organizações usassem um computador sem possuir um, e promoveu o uso interativo de computadores e o desenvolvimento de novos aplicativos interativos.
+Antes do time-sharing, os computadores eram usados de forma sequencial com processamento em lote (batch processing), onde os programas eram submetidos e os resultados retornavam horas ou dias depois. Mas com o advento do time-sharing vários usuários puderam interagir com o sistema em tempo real digitando comando e recebendo repostas imediatas.
 
-O conceito de compartilhamento de tempo estabeleceu a base para a virtualização, pois introduziu a ideia de dividir um único hardware entre múltiplos usuários e processos isolados. No início, os sistemas operacionais suportavam múltiplos usuários e tarefas, mas todos compartilhavam o mesmo ambiente.
+Isso levou ao desenvolvimento de interface interativas e linguagem de programação mais dinâmicas, como BASIC, que facilitavam a criação e execução de programas rapidamente. Além disso, abriu espaço para terminais remotos, onde usuário podiam acessar um computador central sem estarem fisicamente próximos dele.
 
-Na década de 1970, a IBM levou esse conceito adiante ao criar o CP-40 e CP-67, sistemas pioneiros que introduziram máquinas virtuais completas, permitindo que múltiplos sistemas operacionais rodassem simultaneamente no mesmo mainframe. Esse avanço deu origem ao VM/370, um dos primeiros hipervisores amplamente utilizados, e abriu caminho para o desenvolvimento das máquinas virtuais modernas.
+O time-sharing foi um dos primeiros exemplos de multiplexação de recursos. Ele mostrou que um único hardware poderia ser dividido logicamente entre vários usuário e processos, criando a ilusão de múltiplos ambientes independentes. Esse conceito inspirou a ideia de executar sistemas completamente isolados uns dos outros, o que levou ao surgimento das máquinas virtuais.
 
-Nos anos 2000, a virtualização evoluiu para rodar em hardware x86 com tecnologias como VMware, Xen e KVM, permitindo que servidores e desktops rodassem múltiplos sistemas operacionais simultaneamente. No entanto, as VMs ainda tinham um alto custo de inicialização e consumo de recursos.
+A motivação inicial para a virtualização era permitir que diversos usuários utilizassem o mesmo mainframe de maneira eficiente, isolando diferentes workloads e testando novos sistemas sem afetar produção.
 
-Foi a necessidade de uma solução mais leve e eficiente que levou à criação dos containers, que compartilham o mesmo kernel do sistema operacional, mas oferecem isolamento de processos semelhante ao das VMs. Com isso, tecnologias como LXC, Docker e Podman emergiram, tornando o desenvolvimento e a implantação de software mais ágeis e eficientes.
+Porém para implementar essa separação total, não bastava apenas um sistema operacional com suporte a múltiplos usuários e processos, era necessário algo que permitisse que múltiplos sistemas operacionais rodassem simultaneamente sobre um mesmo hardware físico. E para esse fim, surge no laboratório de pesquisa da IBM o conceito de hypervisors. 
 
-Dessa forma, o compartilhamento de tempo não só revolucionou a computação interativa, mas também estabeleceu os princípios fundamentais para a virtualização e, posteriormente, para os containers que usamos hoje.
+### Hypervisor & Virtualização
+
+A IBM foi pioneira no desenvolvimento de hypervisors na década de 1960, introduzindo os primeiros Monitores de Máquina Virtual (VMM - Virtual Machine Monitor) em seus mainframes. O objetivo era permitir que diferentes usuários compartilhassem um mesmo computador de forma eficiente e segura.
+
+Nos anos 1970, a IBM aprimorou essa tecnologia com os sistemas CP-40 e CP-67, que introduziram máquinas virtuais completas, possibilitando a execução simultânea de múltiplos sistemas operacionais no mesmo mainframe. Esse avanço levou ao desenvolvimento do VM/370, um dos primeiros hypervisors amplamente utilizados, estabelecendo as bases da virtualização moderna.
+
+Nos anos 2000, a virtualização expandiu-se para arquiteturas x86, com soluções como VMware, Xen e KVM, permitindo que servidores e desktops executassem múltiplos sistemas operacionais simultaneamente.
+
+### O Papel do Hypervisor
+O hypervisor age como uma camada intermediária entre o hardware e os sistemas operacionais, criando e gerenciando Máquinas Virtuais (VMs). Ele aloca recursos como CPU, memória, disco e dispositivos de I/O, garantindo isolamento e segurança entre as VMs.
+
+✅ Principais Funcionalidades:
+
+- Isolamento – Cada VM roda independentemente, sem interferir nas outras.
+- Gerenciamento de Recursos – Distribuição dinâmica de CPU, RAM, disco e rede.
+- Execução de Múltiplos Sistemas Operacionais – Possibilita rodar Windows e Linux no mesmo hardware.
+- Migração e Snapshots – Permite mover VMs entre servidores e criar backups instantâneos.
+
+Os hypervisores são classificados em dois tipos principais:
+
+1. Hypervisor Tipo 1 (Bare-Metal) – Roda diretamente sobre o hardware, sem necessidade de um sistema operacional intermediário.
+- Exemplos: VMware ESXi, Microsoft Hyper-V, KVM, Xen.
+- Vantagens: Melhor desempenho e segurança, ideal para servidores e datacenters.
+
+2. Hypervisor Tipo 2 (Hosted) – Roda como um software dentro de um sistema operacional já existente.
+- Exemplos: VMware Workstation, VirtualBox, Parallels.
+- Vantagens: Mais fácil de instalar e usar, ideal para testes e desenvolvimento.
+
+### Virtualização na Computação Moderna
+
+Hoje, os hypervisores são essenciais para diversas aplicações:
+
+- Cloud Computing – Serviços como AWS, Google Cloud e Azure dependem de VMs para alocar recursos dinamicamente.
+- Ambientes de Teste e Desenvolvimento – Facilita a execução de diferentes SOs sem necessidade de múltiplos hardwares.
+- Segurança e Isolamento – Ambientes virtualizados evitam que falhas ou ataques afetem o sistema principal.
+
+Apesar das vantagens, as VMs possuem um alto custo de inicialização e consumo de recursos, pois cada instância executa um sistema - operacional completo. Isso levou à busca por soluções mais leves e eficientes, culminando no desenvolvimento dos containers.
+
+---
+
+### Máquinas Virtuais (VMs)
+
+Uma Máquina Virtual (VM) é um ambiente computacional simulado que permite a execução de um sistema operacional completo sobre um hardware físico. Isso é possível graças ao hypervisor, que aloca e gerencia recursos (CPU, memória, disco e rede) para cada instância virtual.
+
+Cada VM possui seu próprio sistema operacional, kernel, drivers e aplicativos, garantindo isolamento total. Isso possibilita:
+- Executar diferentes SOs no mesmo hardware.
+- Rodar aplicações legadas em sistemas modernos.
+- Melhorar a segurança, pois falhas em uma VM não afetam outras.
+
+Desvantagens:
+- Alto consumo de recursos.
+- Maior tempo de inicialização.
+- Sobreposição de sistemas operacionais pode reduzir eficiência.
+
+---
+
+### Containers
+
+Os containers surgiram como uma alternativa mais leve e eficiente às VMs. Eles não virtualizam o hardware, mas sim o sistema operacional, permitindo que várias aplicações rodem isoladas sem necessidade de múltiplos SOs completos.
+
+#### Como Funcionam os Containers?
+
+Em vez de criar múltiplos kernels, os containers compartilham o kernel do sistema operacional host e utilizam tecnologias como namespaces e cgroups para fornecer isolamento e controle de recursos.
+- Namespaces – Criam uma visão isolada do sistema para cada container (processos, rede, sistema de arquivos).
+- Cgroups – Limitam o uso de CPU, memória e outros recursos.
+
+Principais Características:
+
+✅ Leves – Cada container roda apenas os processos necessários.
+
+✅ Rápidos – Inicializam em segundos, ao contrário das VMs.
+
+✅ Imutáveis – Baseados em imagens padronizadas para garantir consistência.
+
+✅ Portáveis – Funcionam da mesma forma em diferentes ambientes.
+
+Os containers são amplamente utilizados em arquiteturas cloud-native, onde a escalabilidade e a eficiência são essenciais. Tecnologias como Docker, LXC e Podman impulsionaram seu crescimento, tornando o desenvolvimento e a implantação de software mais ágeis.
+
+#### Linux: A Base dos Containers
+Embora existam soluções para Windows e macOS, o Linux domina o cenário de containers devido ao seu suporte nativo a namespaces e cgroups. Ferramentas como Kubernetes facilitam a orquestração e escalabilidade de aplicações baseadas em containers.
+
+---
+
+### VMs vs. Containers: Comparativo
+
+| Critério             | Máquinas Virtuais (VMs)                                  | Containers                                   |
+|----------------------|--------------------------------------------------------|----------------------------------------------|
+| **Virtualização**   | Do hardware (hipervisor emula um sistema completo)      | Do sistema operacional (compartilha o kernel) |
+| **Isolamento**      | Forte (cada VM tem seu próprio SO)                      | Médio (compartilha o kernel do host)        |
+| **Consumo de Recursos** | Alto (cada VM precisa de um SO completo)             | Baixo (somente a aplicação e dependências)  |
+| **Tempo de Inicialização** | Lento (boot do SO dentro da VM)                   | Rápido (roda como um processo)              |
+| **Eficiência**      | Menos eficiente devido ao overhead do SO                | Alta eficiência, menor consumo de recursos  |
+| **Escalabilidade**  | Limitada (cada VM exige mais recursos)                  | Alta (containers são leves e fáceis de replicar) |
+| **Portabilidade**   | Depende do hipervisor e do SO                           | Alto (pode rodar em qualquer ambiente com o mesmo SO) |
+| **Segurança**       | Maior isolamento (cada VM é independente)               | Menos isolado (compartilha o kernel)        |
+| **Casos de Uso**    | Aplicações legadas, múltiplos SOs, ambientes isolados   | Microserviços, cloud computing, CI/CD       |
+| **Exemplos**        | VMware ESXi, Microsoft Hyper-V, KVM, Xen                | Docker, Podman, LXC, Kubernetes             |
 
 
-## Máquina Virtuais (VMs)
+---
 
-Uma máquina virtual (VM) é um ambiente computacional simulado que roda sobre um sistema físico, permitindo a execução de um sistema operacional completo dentro de outro. Isso é possível graças a um software chamado hipervisor, que atua como uma camada entre o hardware e as VMs, gerenciando e alocando recursos (CPU, memória, disco e rede) para cada instância virtual. Existem dois tipos de hipervisores:
 
-- Tipo 1 (Bare Metal): Executado diretamente sobre o hardware, sem um sistema operacional intermediário. Ex.: VMware ESXi, Microsoft Hyper-V, KVM, Xen.
+### Conclusão
+O conceito de compartilhamento de tempo estabeleceu os fundamentos para a virtualização, levando à criação dos hypervisors, que possibilitaram a execução de múltiplos sistemas operacionais em um único hardware.
 
-- Tipo 2 (Hosted): Roda sobre um sistema operacional tradicional, como um aplicativo. Ex.: VMware Workstation, VirtualBox.
+Com o tempo, a virtualização evoluiu para se tornar mais leve e eficiente, culminando nos containers, que revolucionaram o desenvolvimento e a implantação de software. Hoje, tanto VMs quanto containers desempenham papéis essenciais na computação moderna, cada um com suas vantagens e aplicações específicas.
 
-Cada VM contém seu próprio sistema operacional, kernel, drivers e aplicativos, garantindo isolamento total entre elas. Isso permite rodar diferentes SOs no mesmo hardware físico, executar aplicações legadas e melhorar a segurança, pois falhas ou ataques em uma VM não afetam diretamente as outras. No entanto, esse nível de isolamento tem um custo: cada VM consome uma grande quantidade de recursos, pois precisa emular um sistema completo, tornando sua inicialização e gerenciamento mais pesados em comparação com os containers.
+🔹 VMs são ideais para isolamento total e execução de múltiplos sistemas operacionais.
 
-## Containers
-
-Um container é um ambiente isolado que executa uma aplicação junto com todas as suas dependências, bibliotecas e configurações, sem precisar de um sistema operacional completo como ocorre nas máquinas virtuais. Em vez de virtualizar o hardware, os containers compartilham o mesmo kernel do sistema operacional host, usando mecanismos como namespaces e cgroups para fornecer isolamento e controle de recursos.
-
-Os namespaces garantem que cada container tenha sua própria visão isolada do sistema (processos, rede, sistema de arquivos), enquanto os cgroups limitam o uso de CPU, memória e outros recursos. Isso faz com que os containers sejam leves e eficientes, pois rodam como um processo no sistema operacional, sem a necessidade de um kernel próprio.
-
-Outra característica fundamental dos containers é sua imutabilidade. Eles são baseados em imagens imutáveis, que funcionam como snapshots pré-configurados do ambiente necessário para rodar uma aplicação. Isso garante previsibilidade e consistência. Logo um container deverá funcionar da mesma maneira, seja na máquina do desenvolvedor, seja em produção.
-
-Além disso, os containers são rápidos de iniciar e parar, pois não precisam passar por um processo de boot como uma VM. Eles são simplesmente iniciados ou removidos como qualquer outro processo no sistema operacional. Esse comportamento facilita a escalabilidade dinâmica de aplicações, especialmente quando combinados com ferramentas como Kubernetes.
-
-Por trás de tudo isso, o Linux é rei. Embora existam soluções para rodar containers no Windows e macOS, o suporte nativo do Linux e sua implementação eficiente de namespaces e cgroups fazem dele a plataforma dominante para containers.
-
-Em resumo, um container "acredita" que tem um sistema operacional próprio, mas na realidade, ele apenas compartilha e utiliza os recursos do kernel do SO host. Esse isolamento permite que os processos dentro do container só enxerguem e interajam com aquilo que está dentro dele, garantindo segurança e previsibilidade.
-
-## VMs vs. Containers 
-
-### Diferenças, Semelhanças e Quando Usar
-
-Embora tanto máquinas virtuais (VMs) quanto containers sejam tecnologias de virtualização que proporcionam isolamento e eficiência, eles operam de maneiras distintas. As VMs virtualizam o hardware, permitindo a execução de múltiplos sistemas operacionais completos no mesmo servidor físico. Isso garante isolamento forte e compatibilidade entre diferentes SOs, mas traz sobrecarga de recursos, maior tempo de inicialização e maior complexidade na manutenção. Já os containers virtualizam o sistema operacional, permitindo que várias aplicações rodem isoladas, mas compartilhando o mesmo kernel do SO host. Isso os torna mais leves, rápidos e eficientes, com inicialização quase instantânea e menor consumo de recursos.
-
-Na prática, VMs são ideais para executar aplicações legadas, isolar ambientes que exigem diferentes SOs ou rodar workloads pesados que precisam de mais segurança e estabilidade. Já os containers são perfeitos para aplicações modernas, escaláveis e distribuídas, como microserviços e arquiteturas baseadas na nuvem.
-
-💡 Dica: Por que usar containers? Se você busca portabilidade, escalabilidade e eficiência, os containers são a melhor escolha. Eles permitem empacotar e rodar aplicações de forma previsível em qualquer ambiente, garantindo que "na minha máquina funciona" também seja verdade na produção.
+🔹 Containers são a escolha certa para aplicações escaláveis e ágeis, otimizadas para a nuvem.
