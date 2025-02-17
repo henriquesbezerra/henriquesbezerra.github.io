@@ -2,10 +2,9 @@
 sidebar_position: 1
 ---
 
-# Introdução a Containers
+# Introdução
 
-Nesta introdução, busco compreender as bases sobre containers, 
-olhando resumidamente para a história por trás de seu surgimento e como ela evoluiu até chegar aos poderosos containers runtimers que temos nos dias de hoje, como Docker e Podman.
+## História
 
 Na década de 1960, surge o modelo computacional de **compartilhamento de tempo** (Time-Sharing), que possibilitou o compartilhamento simultâneo de um recurso de computação (CPU, Memória, Armazenamento, Rede, ...) entre múltiplas tarefas e usuários, dando a cada um, uma pequena fatia do tempo de processamento. 
 
@@ -62,6 +61,8 @@ Apesar das vantagens, as VMs possuem um alto custo de inicialização e consumo 
 
 ---
 
+## Resumindo
+
 ### Máquinas Virtuais (VMs)
 
 Uma Máquina Virtual (VM) é um ambiente computacional simulado que permite a execução de um sistema operacional completo sobre um hardware físico. Isso é possível graças ao hypervisor, que aloca e gerencia recursos (CPU, memória, disco e rede) para cada instância virtual.
@@ -82,6 +83,17 @@ Desvantagens:
 
 Os containers surgiram como uma alternativa mais leve e eficiente às VMs. Eles não virtualizam o hardware, mas sim o sistema operacional, permitindo que várias aplicações rodem isoladas sem necessidade de múltiplos SOs completos.
 
+Um container é um ambiente isolado que executa uma aplicação junto com todas as suas dependências, bibliotecas e configurações, sem precisar de um sistema operacional completo como ocorre nas máquinas virtuais. Em vez de virtualizar o hardware, os containers compartilham o mesmo kernel do sistema operacional host, usando mecanismos como namespaces e cgroups para fornecer isolamento e controle de recursos.
+
+Os namespaces garantem que cada container tenha sua própria visão isolada do sistema (processos, rede, sistema de arquivos), enquanto os cgroups limitam o uso de CPU, memória e outros recursos. Isso faz com que os containers sejam leves e eficientes, pois rodam como um processo no sistema operacional, sem a necessidade de um kernel próprio.
+
+Outra característica fundamental dos containers é sua imutabilidade. Eles são baseados em imagens imutáveis, que funcionam como snapshots pré-configurados do ambiente necessário para rodar uma aplicação. Isso garante previsibilidade e consistência: se um container funciona na máquina do desenvolvedor, funcionará da mesma forma em produção.
+
+Além disso, os containers são rápidos de iniciar e parar, pois não precisam passar por um processo de boot como uma VM. Eles são simplesmente iniciados ou removidos como qualquer outro processo no sistema operacional. Esse comportamento facilita a escalabilidade dinâmica de aplicações, especialmente quando combinados com ferramentas como Kubernetes.
+
+Em resumo, um container "acredita" que tem um sistema operacional próprio, mas na realidade, ele apenas compartilha e utiliza os recursos do kernel do SO host. Esse isolamento permite que os processos dentro do container só enxerguem e interajam com aquilo que está dentro dele, garantindo segurança e previsibilidade.
+
+
 #### Como Funcionam os Containers?
 
 Em vez de criar múltiplos kernels, os containers compartilham o kernel do sistema operacional host e utilizam tecnologias como namespaces e cgroups para fornecer isolamento e controle de recursos.
@@ -100,8 +112,11 @@ Principais Características:
 
 Os containers são amplamente utilizados em arquiteturas cloud-native, onde a escalabilidade e a eficiência são essenciais. Tecnologias como Docker, LXC e Podman impulsionaram seu crescimento, tornando o desenvolvimento e a implantação de software mais ágeis.
 
+:::note
+
 #### Linux: A Base dos Containers
 Embora existam soluções para Windows e macOS, o Linux domina o cenário de containers devido ao seu suporte nativo a namespaces e cgroups. Ferramentas como Kubernetes facilitam a orquestração e escalabilidade de aplicações baseadas em containers.
+:::
 
 ---
 
@@ -124,7 +139,7 @@ Embora existam soluções para Windows e macOS, o Linux domina o cenário de con
 ---
 
 
-### Conclusão
+## Conclusão
 O conceito de compartilhamento de tempo estabeleceu os fundamentos para a virtualização, levando à criação dos hypervisors, que possibilitaram a execução de múltiplos sistemas operacionais em um único hardware.
 
 Com o tempo, a virtualização evoluiu para se tornar mais leve e eficiente, culminando nos containers, que revolucionaram o desenvolvimento e a implantação de software. Hoje, tanto VMs quanto containers desempenham papéis essenciais na computação moderna, cada um com suas vantagens e aplicações específicas.

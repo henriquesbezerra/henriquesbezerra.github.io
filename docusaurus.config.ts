@@ -77,22 +77,16 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
+          sidebarId: "fundamentosSidebar",
+          position: "left",
+          label: "Fundamentos",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "containersSidebar",
           position: "left",
-          label: "🚧 Containers",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "🚧 Tutorial",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "javascriptSidebar",
-          position: "left",
-          label: "🚧 Javascript",
-        },
+          label: "Containers",
+        },       
         { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/henriquesbezerra",
