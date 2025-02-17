@@ -2,11 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://henriquesbezerra.github.io/blog</id>
     <title>Codex Blog</title>
-    <updated>2025-02-14T00:00:00.000Z</updated>
+    <updated>2025-02-15T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://henriquesbezerra.github.io/blog"/>
     <subtitle>Codex Blog</subtitle>
     <icon>https://henriquesbezerra.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Bem-vindo ao Codex]]></title>
+        <id>https://henriquesbezerra.github.io/blog/first-blog-post</id>
+        <link href="https://henriquesbezerra.github.io/blog/first-blog-post"/>
+        <updated>2025-02-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Seja bem-vindo ao Codex, meu espaço para organizar, registrar e compartilhar tudo que estudo sobre programação e tecnologia. Aqui, vou documentar conceitos, ferramentas, algoritmos, boas práticas e tudo mais que eu achar interessante no mundo da computação.]]></summary>
+        <content type="html"><![CDATA[<p>Seja bem-vindo ao Codex, meu espaço para organizar, registrar e compartilhar tudo que estudo sobre programação e tecnologia. Aqui, vou documentar conceitos, ferramentas, algoritmos, boas práticas e tudo mais que eu achar interessante no mundo da computação.</p>
+<!-- -->
+<p>A ideia principal do Codex é ser um repositório vivo, onde posso voltar sempre que precisar relembrar algo e, ao mesmo tempo, ajudar outras pessoas que estejam trilhando caminhos parecidos.</p>
+<p>Se você, assim como eu, curte explorar linguagens de programação, arquiteturas de software, sistemas distribuídos, blockchain, containers e muito mais, fique à vontade para acompanhar e contribuir com conteúdo ⚡</p>]]></content>
+        <author>
+            <name>Henri Silva</name>
+            <uri>https://github.com/henriquesbezerra</uri>
+        </author>
+        <category label="Hello" term="Hello"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[🚧 MDX Sample Blog Post]]></title>
         <id>https://henriquesbezerra.github.io/blog/mdx-blog-post</id>
@@ -23,23 +39,6 @@
             <name>Henri Silva</name>
             <uri>https://github.com/henriquesbezerra</uri>
         </author>
-        <category label="Hello" term="Hello"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Bem-vindo ao Codex]]></title>
-        <id>https://henriquesbezerra.github.io/blog/first-blog-post</id>
-        <link href="https://henriquesbezerra.github.io/blog/first-blog-post"/>
-        <updated>2025-02-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Seja bem-vindo ao Codex, meu espaço para organizar, registrar e compartilhar tudo que estudo sobre programação e tecnologia. Aqui, vou documentar conceitos, ferramentas, algoritmos, boas práticas e tudo mais que eu achar interessante no mundo do desenvolvimento.]]></summary>
-        <content type="html"><![CDATA[<p>Seja bem-vindo ao Codex, meu espaço para organizar, registrar e compartilhar tudo que estudo sobre programação e tecnologia. Aqui, vou documentar conceitos, ferramentas, algoritmos, boas práticas e tudo mais que eu achar interessante no mundo do desenvolvimento.</p>
-<!-- -->
-<p>A ideia principal do Codex é ser um repositório vivo, onde posso voltar sempre que precisar relembrar algo e, ao mesmo tempo, ajudar outras pessoas que estejam trilhando caminhos parecidos.</p>
-<p>Se você, assim como eu, curte explorar linguagens de programação, arquiteturas de software, sistemas distribuídos, blockchain, containers e muito mais, fique à vontade para acompanhar essa jornada!</p>
-<p>Bora codar! ⚡</p>]]></content>
-        <author>
-            <name>Henri Silva</name>
-            <uri>https://github.com/henriquesbezerra</uri>
-        </author>
-        <category label="Hello" term="Hello"/>
+        <category label="Exemplos" term="Exemplos"/>
     </entry>
 </feed>
