@@ -8,7 +8,8 @@ O HTTP (HyperText Transfer Protocol) é um protocolo de comunicação que define
 A comunicação HTTP segue um modelo de requisição e resposta (Request-Response): um cliente (como um navegador) solicita um recurso a um servidor, enviando um pacote de dados com cabeçalhos (headers) para uma URI (Uniform Resource Identifier), geralmente representada por uma URL. O servidor, por sua vez, processa a requisição e retorna uma resposta (Response), que pode conter os dados solicitados ou informações adicionais nos cabeçalhos.
 
 :::note
-O protocolo HTTP é especificado e documentado para implementação em ambas as partes da comunicação. Para consultar a especificação oficial, acesse: [RFC 2616](https://datatracker.ietf.org/doc/html/rfc2616).
+1. O protocolo HTTP é especificado e documentado para implementação em ambas as partes da comunicação. Para consultar a especificação oficial, acesse: [RFC 2616](https://datatracker.ietf.org/doc/html/rfc2616).
+2. O intuito desse material é ser como um lembrete do que estudei, e por isso aqui haverá apenas resumos ou pontos de destaque que considerei importante. Obviamente há muito conteúdo a ser explorado sobre o HTTP, então deixo como referência o link [Mozilla - HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP), com um material recheado de tópicos ricos em detalhes técnicos, que essa humilde anotação que fiz, não poderá competir.
 :::
 
 ---
